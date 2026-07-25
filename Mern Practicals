@@ -621,3 +621,359 @@ body {
  padding: 10px; 
  border-top: 2px solid gray; 
 }
+
+b. Pass data between components using props
+CODE:-
+Header.jsx
+function Header() {
+  return (
+    <div className="header">
+      <h2>🍔 Online Food Delivery Dashboard</h2>
+    </div>
+  );
+}
+export default Header;
+Dominos.jsx
+function Dominos() {
+  return (
+    <div className="card">
+      <h2>Domino's Pizza</h2>
+      <p>Food Item: Cheese Burst Pizza</p>
+      <p>Quantity: 2</p>
+      <p>Total Price: ₹600</p>
+      <p>Final Price: ₹570</p>
+    </div>
+  );
+}
+export default Dominos;
+Mcdonalds.jsx
+function Mcdonalds() {
+  return (
+    <div className="card">
+      <h2>McDonald's</h2>
+      <p>Food Item: Veg Burger Combo</p>
+      <p>Quantity: 3</p>
+      <p>Total Price: ₹450</p>
+      <p>Final Price: ₹415</p>
+    </div>
+  );
+}
+export default Mcdonalds;
+Burgerking.jsx
+function Burgerking() {
+  return (
+    <div className="card">
+      <h2>Burger King</h2>
+      <p>Food Item: Whopper Meal</p>
+      <p>Quantity: 1</p>
+      <p>Total Price: ₹320</p>
+      <p>Final Price: ₹299</p>
+    </div>
+  );
+}
+export default Burgerking;
+OrderSummary.jsx
+function OrderSummary() {
+  const totalOrders = 3;
+  const totalAmount = 1370;
+  const finalAmount = 1284;
+  return (
+    <div className="card">
+      <h2>Order Summary</h2>
+      <p>Total Orders : {totalOrders}</p>
+      <p>Total Price : ₹{totalAmount}</p>
+      <p>Final Price : ₹{finalAmount}</p>
+    </div>
+  );
+}
+export default OrderSummary;
+DeliveryStatus.jsx
+function DeliveryStatus() {
+  return (
+    <div className="card">
+      <h2>Delivery Status</h2>
+      <p>Delivered : 2</p>
+      <p>On the Way : 1</p>
+      <p>Cancelled : 0</p>
+      <p>Status : Successful</p>
+    </div>
+  );
+}
+export default DeliveryStatus;
+Footer.jsx
+function Footer() {
+  return (
+    <div className="footer">
+      <p>© 2026 Online Food Delivery Dashboard</p>
+    </div>
+  );
+}
+export default Footer;
+App.jsx
+import Header from "./components/Header";
+import Dominos from "./components/Dominos";
+import Mcdonalds from "./components/Mcdonalds";
+import Burgerking from "./components/Burgerking";
+import OrderSummary from "./components/OrderSummary";
+import DeliveryStatus from "./components/DeliveryStatus";
+import Footer from "./components/Footer";
+import "./App.css";
+function App() {
+  return (
+    <div className="container">
+      <Header />
+      <Dominos />
+      <Mcdonalds />
+      <Burgerking />
+      <OrderSummary />
+      <DeliveryStatus />
+      <Footer />
+    </div>
+  );
+}
+export default App;
+App.css
+body{
+    font-family: Arial;
+    background-color: #f4f4f4;
+}
+.container{
+    width:80%;
+    margin:auto;
+    text-align:center;
+}
+.header{
+    background:white;
+    padding:20px;
+    border-bottom:2px solid gray;
+}
+.card{
+    background:white;
+    margin:20px 0;
+    padding:15px;
+    border-top:2px solid #ccc;
+}
+.card h2{
+    color:darkblue;
+}
+.footer{
+    margin-top:20px;
+    padding:10px;
+    border-top:2px solid gray;
+}
+ 
+c. Use the useState hook to manage and update data.
+CODE:-
+App.jsx
+import {useState} from "react";
+function App(){
+  const [count,setCount]=useState(0);
+  return(
+    <div>
+      <h1>Button Click Counter</h1>
+      <hr/>
+      <h2>User Clicks:{count} times</h2>
+      <button onClick={()=>setCount(count+1)}>Click Me</button>
+    </div>
+  );
+}
+export default App;
+ 
+d. Create a form component to accept user input and display it dynamically.
+CODE:_
+App.jsx
+import "./App.css";
+import StudentForm from "./Components/StudentForm";
+function App() {
+  return (
+    <div className="container">
+      <StudentForm />
+    </div>
+  );
+}
+export default App;
+StudentForm.jsx
+import { useState } from "react";
+function StudentForm() {
+  const [name, setName] = useState("");
+  const [rollNo, setRollNo] = useState("");
+  const [branch, setBranch] = useState("");
+  const [cgpa, setCgpa] = useState("");
+  return (
+    <div>
+      <h1>Student Registration Form</h1>
+      <label>Student Name : </label>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <br />
+      <br />
+      <label>Roll Number : </label>
+      <input
+        type="number"
+        value={rollNo}
+        onChange={(e) => setRollNo(e.target.value)}
+      />
+      <br />
+      <br />
+      <label>Branch : </label>
+      <input
+        type="text"
+        value={branch}
+        onChange={(e) => setBranch(e.target.value)}
+      />
+      <br />
+      <br />
+      <label>CGPA : </label>
+      <input
+        type="number"
+        value={cgpa}
+        onChange={(e) => setCgpa(e.target.value)}
+      />
+      <br />
+      <br />
+      <hr />
+      <h2>Student Details</h2>
+      <p>Name : {name}</p>
+      <p>Roll Number : {rollNo}</p>
+      <p>Branch : {branch}</p>
+      <p>CGPA : {cgpa}</p>
+    </div>
+  );
+}
+export default StudentForm;
+ 
+e. Display a list of items stored in the state using map().
+CODE:-
+App.jsx:
+import { useState } from "react";
+function ItemList() {
+  const [items] = useState([
+    "Oracle",
+    "JP Morgan",
+    "Google",
+    "Microsoft",
+  ]);
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h2>Placement Companies</h2>
+      <ul style={{ display: "inline-block", textAlign: "left" }}>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+export default ItemList;
+
+ 
+f. Build a small interactive component (e.g., counter or to-do list).
+CODE:-
+Counter:
+import { useState } from "react";
+function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <div className="container">
+      <h1>React Counter Application</h1>
+      <hr />
+      <h2>Current Count : {count}</h2>
+      <button onClick={() => setCount(count + 1)}>
+        Increase
+      </button>
+      &nbsp;
+      <button onClick={() => setCount(count - 1)}>
+        Decrease
+      </button>
+      &nbsp;
+      <button onClick={() => setCount(0)}>
+        Reset
+      </button>
+      &nbsp;
+    </div>
+  );
+}
+export default App;
+ 
+To-Do List:
+CODE:-
+App.jsx:
+import { useState } from "react";
+import "./App.css";
+function App() {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const addTask = () => {
+    if (task === "") {
+      return;
+    }
+    setTasks([...tasks, task]);
+    setTask("");
+  };
+  return (
+    <div className="container">
+      <h1>To-Do List</h1>
+      <hr />
+      <input
+        type="text"
+        placeholder="Enter Task"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
+      <button onClick={addTask}>Add Task</button>
+      <hr />
+      <h2>My Tasks</h2>
+      <ul>
+        {tasks.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+export default App;
+App.css:
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+.container {
+  width: 600px;
+  margin: 40px auto;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+input {
+  width: 350px;
+  padding: 10px;
+  font-size: 18px;
+}
+button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: darkgreen;
+}
+ul {
+  text-align: left;
+  width: 400px;
+  margin: auto;
+}
+li {
+  font-size: 22px;
+  margin: 10px 0;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Practical 5
