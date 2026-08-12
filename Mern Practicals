@@ -977,3 +977,173 @@ li {
 }
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Practical 5
+
+5.React Routing and Data Handling
+a. Install and configure React Router in the React application.
+CODE:-
+npm install react-router-dom
+
+ 
+b. Create multiple pages and implement navigation between them.
+CODE:-
+Home.jsx:
+function Home(){
+  return(
+    <div>
+    <h1>Home Page</h1>
+    <p> Welcome to our react Application.</p>
+    </div>
+  );
+}
+export default Home;
+About.jsx:
+function About() {
+  return(
+    <div>
+    <h1>About page</h1>
+    <p> This Page Contains information about our application.</p>
+    </div>
+  );
+}
+export default About;
+Contact.jsx:
+function Contact(){
+  return(
+    <div>
+    <h1>Contact Page</h1>
+    <p> Email:pritiyadavmvlu@gmail.com</p>
+    </div>
+  );
+}
+export default Contact;
+App.jsx:
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+function App() {
+  return (
+    <BrowserRouter>
+      <h1>My React Application</h1>
+      <nav>
+        <Link to="/">Home</Link>
+        <br />
+        <Link to="/about">About</Link>
+        <br />
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <hr />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+export default App;
+
+  
+ 
+c. Use Link and Routes to move between pages.
+CODE:-
+Dashboard.jsx:
+function Dashboard(){
+    return (
+        <div>
+            <h1>Placement Dashboard</h1>
+            <p>This is the dashboard page of our application.</p>
+            <hr/>
+            <h2>Placement Details</h2>
+            <p>Total Companies: 10</p>
+            <p>Placed Students: 50</p>
+            <p>Highest Package: 16 LPA</p>
+        </div>
+    );
+}
+export default Dashboard;
+Profile.jsx:
+function Profile(){
+    return (
+        <div>
+            <h1>Profile Page</h1>
+            <p>Name:Priti Yadav</p>
+            <p>Email:pritiyadavmvlu@gmail.com</p>
+            <p>Phone: 9137532075</p>
+            <p>Skill: JavaScript,MERN</p>
+            <p>CGP : 9.9</p>
+        </div>
+    );
+}
+export default Profile;
+Jobs.jsx:
+function Jobs() {
+    return (
+        <div>
+            <h1>Jobs Opportunities</h1>
+            <p>We have many job opportunities available for students.</p>
+            <hr/>
+            <h2>Job Listings</h2>
+            <ul>
+                <li>Software Engineer at XYZ Company</li>
+                <li>Frontend Developer at ABC Company</li>
+                <li>Backend Developer at DEF Company</li>
+                <li>Full Stack Developer at GHI Company</li>
+            </ul>
+            <h2>Apply for a Job</h2>
+            <p>Interested in any of the above positions? Fill out the application form below.</p>  
+        </div>
+    )
+}
+export default Jobs;
+Statistics.jsx:
+function Statistics() {
+    return (
+        <div>
+            <h1>Placement Statistics Page</h1>
+            <p>This is the statistics page of our application.</p>
+            <hr/>
+            <h2>Statistics Details</h2>
+            <p>Total Students: 100</p>
+            <p>Placed Students: 50</p>
+            <p>Unplaced Students: 50</p>
+            <p>Average Package: 8 LPA</p>
+        </div>
+    )
+}
+export default Statistics;
+App.jsx:
+import {BrowserRouter , Routes, Route, Link } from "react-router-dom";
+import Dashboard from './Pages/Dashboard';
+import Profile from './Pages/Profile';
+import Jobs from './Pages/Jobs';
+import Statistics from './Pages/Statistics';
+function App() {
+  return (
+    <BrowserRouter>
+      <h1>M.V.L.U Placement Portal</h1>
+      <nav>
+        <Link to="/">Dashboard</Link>
+        <br/>
+        <Link to="/Profile">Profile</Link>
+        <br/>
+        <Link to="/Jobs">Jobs</Link>
+        <br/>
+        <Link to="/Statistics">Statistics</Link>
+        <br/>
+      </nav>
+      <hr/>
+      <Routes>
+        <Route path="/" element={<Dashboard/>}/>
+        <Route path="/Profile" element={<Profile/>}/>
+        <Route path="/Jobs" element={<Jobs/>}/>
+        <Route path="/Statistics" element={<Statistics/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+export default App;
+
+
+
+
