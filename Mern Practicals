@@ -578,7 +578,11 @@ export default Footer;
 App.jsx 
 import Header from "./components/Header"; 
 import Student from "./components/Student"; 
-import Eligibility from "./components/Eligibility"; import Placementstatus from "./components/Placementstatus"; import Companyoffer from "./components/Companyoffer"; import Skillprogress from "./components/Skillprogress"; import Footer from "./components/Footer"; 
+import Eligibility from "./components/Eligibility"; 
+import Placementstatus from "./components/Placementstatus";
+import Companyoffer from "./components/Companyoffer"; 
+import Skillprogress from "./components/Skillprogress"; 
+import Footer from "./components/Footer"; 
 import "./App.css"; 
 function App() { 
  return ( 
