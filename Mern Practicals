@@ -979,6 +979,65 @@ li {
   font-size: 22px;
   margin: 10px 0;
 }
+
+
+4e. Display a list of items stored in the state using map().
+Q. Develop a React application to create a Movie Watchlist.
+Use the useState hook to store an array of movie objects containing the movie name, genre, and rating. Use the map() method to iterate through the array and dynamically display the details of each movie on the webpage.
+The application should display:
+•	Movie Name 
+•	Genre 
+•	Rating 
+Concepts to be used:
+useState, arrays, objects, map(), JSX, and dynamic data rendering.
+CODE:-
+App.jsx:
+import { useState } from "react";
+function App() {
+  const [movies] = useState([
+    {
+      name: "Saiyaara",
+      genre: "Romance",
+      rating: 9
+    },
+    {
+      name: "Deewaniyat",
+      genre: "Romance",
+      rating: 8.5
+    },
+    {
+      name: "Raanjhanaa",
+      genre: "Romance",
+      rating: 9
+    },
+    {
+      name: "Ranjha",
+      genre: "Romance",
+      rating: 8.5
+    },
+    {
+      name: "Aashiqui 2",
+      genre: "Romance",
+      rating: 9
+    }
+  ]);
+  return (
+    <div>
+      <h1>Movie Watchlist</h1>
+      <hr />
+      {movies.map((movie, index) => (
+        <div key={index}>
+          <h2>Movie Name: {movie.name}</h2>
+          <p>Genre: {movie.genre}</p>
+          <p>Rating: {movie.rating}</p>
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
+}
+export default App;
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Practical 5
 
@@ -1281,6 +1340,7 @@ function App() {
     </div>
   );}
 export default App;
+
 
  
 
