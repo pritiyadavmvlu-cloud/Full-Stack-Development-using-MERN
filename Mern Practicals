@@ -1047,7 +1047,6 @@ function App() {
 }
 export default App;
 
-  
  
 c. Use Link and Routes to move between pages.
 CODE:-
@@ -1147,6 +1146,146 @@ function App() {
   );
 }
 export default App;
+
+
+d. Fetch sample data from a public API using Axios.
+CODE:-
+Install Axios using:
+npm install axios
+App.jsx:
+import axios from "axios";
+import { useEffect, useState } from "react";
+function App() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios.get("https://dummyjson.com/products")
+      .then((response) => {
+        setProducts(response.data.products);
+      });
+  }, []);
+  return (
+    <div>
+      <h1>Product List</h1>
+      <hr />
+
+      {products.map((product) => (
+        <div key={product.id}>
+          <h2>{product.title}</h2>
+          <p>Price: Rs.{product.price}</p>
+        </div>
+      ))}
+    </div>
+  );}
+export default App;
+
+
+ 
+e. Display fetched data in table or list format.
+CODE:-
+import axios from "axios";
+import { useEffect, useState } from "react";
+function App() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/products")
+      .then((response) => {
+        setProducts(response.data.products);
+      });
+  }, []);
+  return (
+    <div>
+      <h1>Product List</h1>
+      <hr />
+      <table border="1" cellPadding="10">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.title}</td>
+              <td>{product.category}</td>
+              <td>${product.price}</td>
+              <td>{product.rating}</td>
+              <td>{product.stock}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+export default App;
+
+ 
+f. Implement search or filter functionality on displayed data.
+CODE:-
+import axios from "axios";
+import { useEffect, useState } from "react";
+function App() {
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/products")
+      .then((response) => {
+        setProducts(response.data.products);
+      });
+  }, []);
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(search.toLowerCase())
+  );
+  return (
+    <div>
+      <h1>Product List</h1>
+      <input
+        type="text"
+        placeholder="Search product..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <hr />
+      <table border="1" cellPadding="10">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredProducts.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.title}</td>
+              <td>{product.category}</td>
+              <td>${product.price}</td>
+              <td>{product.rating}</td>
+              <td>{product.stock}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );}
+export default App;
+
+ 
+
+
+
 
 
 
